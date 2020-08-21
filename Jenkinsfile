@@ -10,7 +10,10 @@ pipeline {
         
         stage('Deploy') {
             steps {
-                echo 'Deploying....'
+                sh 'docker build -t coba-git .'
+                sh 'docker run -d --name halo-rest -p 80:80 coba-git'
+                sh 'docker ps'
+                echo 'Deploy success....'
             }
         }
     }
