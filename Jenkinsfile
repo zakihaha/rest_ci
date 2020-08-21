@@ -10,7 +10,7 @@ pipeline {
         
         stage('Deploy') {
             steps {
-
+                sh 'docker build -t coba-git .'
                 echo 'Deploy success....'
             }
         }
