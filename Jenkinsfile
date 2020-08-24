@@ -8,14 +8,19 @@ pipeline {
             }
         }
         
+        stage('Build') {
+            steps {
+                sh 'docker build -t rest-ci-img .'
+                sh 'docker container stop rest-ci'
+                sh 'docker container rm rest-ci'
+                echo 'Build success...'
+            }
+        }
+        
         stage('Deploy') {
             steps {
-                sh 'docker build -t coba-git .'
-                sh 'docker container stop halo-rest'
-                sh 'docker container rm halo-rest'
-                sh 'docker run -d --name halo-rest -p 80:80 coba-git'
-                sh 'docker ps'
-                echo 'Deploy success....'
+                sh 'docker run -d --name rest-ci -p 80:80 rest-ci-img'
+                echo 'Deploy success...'
             }
         }
     }
