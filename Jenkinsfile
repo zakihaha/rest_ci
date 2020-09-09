@@ -19,7 +19,7 @@ pipeline {
         
         stage('Deploy') {
             steps {
-                sh 'docker run -d --name rest-ci -p 80:80 rest-ci-img'
+                sh 'docker run -d -v /home/zakichoiruddin24/apache-config-restci/:/etc/apache2/sites-enabled/ --name rest-ci -p 80:80 rest-ci-img'
                 echo 'Deploy success...'
             }
         }
