@@ -11,8 +11,8 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'docker build -t rest-ci-img .'
-                sh 'docker stop rest-ci-img'
-                sh 'docker rm rest-ci-img'
+                sh 'docker stop rest-ci'
+                sh 'docker rm rest-ci'
                 echo 'Build success...'
             }
         }
